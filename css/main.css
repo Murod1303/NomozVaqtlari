@@ -645,4 +645,13 @@ table {
   display: block;
   font-size: 12px;
   text-align: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .footer__title {
+    font-size: 22px;
+  }
+  .footer__desc {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=main.css.map */
