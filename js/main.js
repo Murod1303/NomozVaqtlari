@@ -29,7 +29,7 @@ function dateCurrent() {
   const minut = date.getMinutes().toString().padStart(2, 0);
   const second = date.getSeconds().toString().padStart(2, 0);
   
-  console.log(day, month, year, hour, minut, second);
+  // console.log(day, month, year, hour, minut, second);
   elDate.textContent = `${day}.${month}.${year}` 
   elCurrunt.textContent = `${hour}:${minut}:${second}` 
 
@@ -39,7 +39,7 @@ setInterval(dateCurrent, 1000)
 
 const dateForFetch = new Date()
 const monthFetch = dateForFetch.getMonth()+1
-console.log(monthFetch);
+// console.log(monthFetch);
 
 
 elSelect.addEventListener("change", ms=>{
