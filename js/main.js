@@ -20,8 +20,22 @@ const dataArrT = []
 
 
 
-const date = new Date();
-const month = date.getMonth() + 1;
+function dateCurrent() {
+  const date = new Date();
+  const day = date.getDate().toString().padStart(2, 0);
+  const month = date.getMonth().toString().padStart(2, 0);
+  const year = date.getFullYear();
+  const hour = date.getHours().toString().padStart(2, 0);
+  const minut = date.getMinutes().toString().padStart(2, 0);
+  const second = date.getSeconds().toString().padStart(2, 0);
+  
+  console.log(day, month, year, hour, minut, second);
+  elDate.textContent = `${day}.${month}.${year}` 
+  elCurrunt.textContent = `${hour}:${minut}:${second}` 
+
+}
+dateCurrent()
+setInterval(dateCurrent, 1000)
 
 
 elSelect.addEventListener("change", ms=>{
@@ -103,7 +117,7 @@ elBtnWrapper.addEventListener("click", evt=>{
         console.log(error);
       }
       elTable.style.display = "inline-table"
-
+      
     }
     fetchMonth(`https://islomapi.uz/api/monthly?region=${elSelect.value}&month=${month}`)
   }
@@ -113,125 +127,17 @@ const tempFragWeek = document.querySelector(".temp__table").content
 function renderTable(arrT, nodeT) {
   nodeT.innerHTML = "";
   arrT.forEach(item => {
-      const tempTableClone = tempFragWeek.cloneNode(true)
-      tempTableClone.querySelector(".table__haeding-weekday").textContent = item.weekday
-      tempTableClone.querySelector(".table__data-day").textContent = item.date.slice(0, 10)
-      tempTableClone.querySelector(".table__data-bomdod").textContent = item.times.tong_saharlik
-      tempTableClone.querySelector(".table__data-quyosh").textContent = item.times.quyosh
-      tempTableClone.querySelector(".table__data-peshin").textContent = item.times.peshin
-      tempTableClone.querySelector(".table__data-asr").textContent = item.times.asr
-      tempTableClone.querySelector(".table__data-shom").textContent = item.times.shom_iftor
-      tempTableClone.querySelector(".table__data-hufton").textContent = item.times.hufton
-      fragmentTable.appendChild(tempTableClone)
+    const tempTableClone = tempFragWeek.cloneNode(true)
+    tempTableClone.querySelector(".table__haeding-weekday").textContent = item.weekday
+    tempTableClone.querySelector(".table__data-day").textContent = item.date.slice(0, 10)
+    tempTableClone.querySelector(".table__data-bomdod").textContent = item.times.tong_saharlik
+    tempTableClone.querySelector(".table__data-quyosh").textContent = item.times.quyosh
+    tempTableClone.querySelector(".table__data-peshin").textContent = item.times.peshin
+    tempTableClone.querySelector(".table__data-asr").textContent = item.times.asr
+    tempTableClone.querySelector(".table__data-shom").textContent = item.times.shom_iftor
+    tempTableClone.querySelector(".table__data-hufton").textContent = item.times.hufton
+    fragmentTable.appendChild(tempTableClone)
   });
   elTableBody.appendChild(fragmentTable)
   
 }
-// renderTable(dataT, elTableBody)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // week table 
-
-// elBtnWeek.addEventListener("click",()=>{
-//   fetchAPIWeek(`https://islomapi.uz/api/monthly?region=${elSelect.value}&month=4`)
-// })
-
-
-
-
-// async function fetchAPIWeek(url) {
-//   try {
-//     const resT = await fetch(url)
-//     const dataT = await resT.json()
-    
-//     renderTable(dataT, elTableBody)
-//     return dataT
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// fetchAPIWeek(`https://islomapi.uz/api/monthly?region=Toshkent&month=4`)
-
-
-// const tempFragWeek = document.querySelector(".temp__table").content
-// function renderTable(arrT, nodeT) {
-//   nodeT.innerHTML = "";
-//   arrT.forEach(item => {
-//       const tempTableClone = tempFragWeek.cloneNode(true)
-//       tempTableClone.querySelector(".table__haeding-weekday").textContent = item.weekday
-//       tempTableClone.querySelector(".table__data-day").textContent = item.date.slice(0, 10)
-//       tempTableClone.querySelector(".table__data-bomdod").textContent = item.times.tong_saharlik
-//       tempTableClone.querySelector(".table__data-quyosh").textContent = item.times.quyosh
-//       tempTableClone.querySelector(".table__data-peshin").textContent = item.times.peshin
-//       tempTableClone.querySelector(".table__data-asr").textContent = item.times.asr
-//       tempTableClone.querySelector(".table__data-shom").textContent = item.times.shom_iftor
-//       tempTableClone.querySelector(".table__data-hufton").textContent = item.times.hufton
-//       fragmentTable.appendChild(tempTableClone)
-//     // dataArrT.splice(item, 1)
-//   });
-//   elTableBody.appendChild(fragmentTable)
-  
-// }
-// renderTable(dataArrT, elTableBody)
-
-
-
-// /* monthly table  */
-
-// elBtnMonth.addEventListener("click",()=>{
-//   fetchAPIMonth(`https://islomapi.uz/api/present/monthly?region=${elSelect.value}`)
-// })
-
-
-
-
-// async function fetchAPIMonth(url) {
-//   try {
-//     const resT = await fetch(url)
-//     const dataT = await resT.json()
-//     renderTable(dataT, elTableBody)
-//     return dataT
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// fetchAPIMonth(`https://islomapi.uz/api/present/monthly?region=Toshkent`)
-
-
-// const tempFragMonth = document.querySelector(".temp__table").content
-// function renderTable(arrT, nodeT) {
-//   nodeT.innerHTML = ""
-//   arrT.forEach(item => {
-//     dataArrT.push(item)
-
-    
-//     dataArrT.forEach(item => {
-//       const tempTableClone = tempFragWeek.cloneNode(true)
-//       tempTableClone.querySelector(".table__haeding-weekday").textContent = item.weekday
-//       tempTableClone.querySelector(".table__data-day").textContent = item.date.slice(0, 10)
-//       tempTableClone.querySelector(".table__data-bomdod").textContent = item.times.tong_saharlik
-//       tempTableClone.querySelector(".table__data-quyosh").textContent = item.times.quyosh
-//       tempTableClone.querySelector(".table__data-peshin").textContent = item.times.peshin
-//       tempTableClone.querySelector(".table__data-asr").textContent = item.times.asr
-//       tempTableClone.querySelector(".table__data-shom").textContent = item.times.shom_iftor
-//       tempTableClone.querySelector(".table__data-hufton").textContent = item.times.hufton
-//       fragmentTable.appendChild(tempTableClone)
-//     });
-//     dataArrT.splice(item, 1)
-//   });
-//   elTableBody.appendChild(fragmentTable)
-  
-// }
-// renderTable(dataArrT, elTableBody)
