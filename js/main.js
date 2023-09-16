@@ -37,6 +37,10 @@ function dateCurrent() {
 dateCurrent()
 setInterval(dateCurrent, 1000)
 
+const dateForFetch = new Date()
+const monthFetch = dateForFetch.getMonth()+1
+console.log(monthFetch);
+
 
 elSelect.addEventListener("change", ms=>{
   ms.preventDefault()
@@ -119,7 +123,7 @@ elBtnWrapper.addEventListener("click", evt=>{
       elTable.style.display = "inline-table"
       
     }
-    fetchMonth(`https://islomapi.uz/api/monthly?region=${elSelect.value}&month=${month}`)
+    fetchMonth(`https://islomapi.uz/api/monthly?region=${elSelect.value}&month=${monthFetch}`)
   }
 })
 
